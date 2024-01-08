@@ -1,0 +1,17 @@
+version: 2
+
+sources:
+  - name: saad_shop
+    database: kanyu
+    schema: public
+    tables:
+      - name: addresses
+      - name: employee_users
+      - name: products
+      - name: sales
+      - name: sku_transactions
+      - name: skus
+      - name: stores
+      - name: transactions
+      - name: user_profiles
+      - name: users
