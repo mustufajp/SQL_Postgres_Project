@@ -1,0 +1,50 @@
+version: 2
+
+sources:
+  - name: saad_shop
+    database: kanyu
+    schema: public
+    tables:
+      - name: addresses
+        description: >
+          Address for users and shops.
+      - name: employee_users
+        description: >
+          List of employees and their status.
+        columns:
+          - name: user_id
+            description: Primary key and Foreign Key of users table.
+      - name: sales
+        description: >
+          It is an aggregation of transactions.
+      - name: sku_transactions
+        description: >
+          Associate each products to transactions.
+        columns:
+          - name: id
+            description: Primary key
+          - name: sku_id
+            description: Product ids
+      - name: skus
+        description: >
+          Provide detail of each products.
+        columns:
+          - name: sku_code
+            description: It is a combination of category,code,type,size. It is most useful for Saad employees to identify products.
+      - name: stores
+        description: >
+          Provide details for each store.
+      - name: transactions
+        description: >
+          List out all the transaction happened.
+        columns:
+          - name: sender_id
+            description: It is a customer id (user_id for customers) and null for a customer without a user_id,unless it is a refund. In refund cases, it will be a shop_id/emplpyee_id.
+          - name: reciever_id
+            description: Opposite of sender_id, where it is a shop_id/emplpyee_id unless it is a refund. In refund cases, it will be a user_id for customer or null is user_id is not available.
+      - name: user_profiles
+        description: >
+          Detail of the users including employees and customers.
+      - name: users
+        description: >
+          Similar to user_profile table but provides more detail.
