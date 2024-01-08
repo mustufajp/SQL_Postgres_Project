@@ -2,6 +2,7 @@ version: 2
 
 sources:
   - name: saad_shop
+    description: This schema contains data from the Amazon RDS postgres data which compiles event tables for SAAD.
     database: kanyu
     schema: public
     tables:
