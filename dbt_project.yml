@@ -20,4 +20,9 @@ clean-targets:
 
 models:
   saad_dashboard:
+   staging:
     +materialized: view
+   intermediate:
+    +materialized: view
+    +schema: intermediate
+
