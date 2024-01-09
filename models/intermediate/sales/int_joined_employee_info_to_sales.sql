@@ -8,9 +8,10 @@ stg_saad_shop__user_profiles as
 (
 select *
 from {{ ref('stg_saad_shop__user_profiles') }}
-)
+),
 
-
+int_joined_employee_info_to_sales as
+(
 SELECT 
 c.*
 ,p.first_name as employee_first_name
@@ -18,4 +19,6 @@ c.*
 FROM int_joined_location_to_sales as c
 LEFT JOIN  stg_saad_shop__user_profiles as p
 ON p.user_id = c.employee_id
+)
 
+select * from int_joined_employee_info_to_sales
