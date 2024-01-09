@@ -13,3 +13,4 @@ fb_custom_audience_list as
 )
 
 select * from fb_custom_audience_list
+
