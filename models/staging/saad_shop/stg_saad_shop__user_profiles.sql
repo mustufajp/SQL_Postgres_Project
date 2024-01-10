@@ -9,7 +9,7 @@ source as (
 renamed as (
 
     select
-        verified as status_verified,
+        verified as is_user_profile_verified,
         user_id,
         first_name,
         last_name,
@@ -18,8 +18,7 @@ renamed as (
         gender,
         date_of_birth,
         address_id,
-        updated_at
-
+        updated_at as user_profile_updated_at
     from source
 
 )
