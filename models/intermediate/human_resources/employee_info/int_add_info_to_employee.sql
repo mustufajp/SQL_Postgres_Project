@@ -30,7 +30,7 @@ address_info as (
         store_short_name,
         store_name,
         store_phone_number,
-        combined_address
+        store_combined_address
     from {{ ref('int_address_joined_to_store') }}
 ),
 

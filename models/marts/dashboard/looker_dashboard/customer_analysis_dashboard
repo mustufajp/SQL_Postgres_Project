@@ -6,7 +6,7 @@ sales as
 ),
 
 employee_info as (
-    select,
+    select
     employee_id,
     employee_type,
     employee_status
