@@ -9,11 +9,17 @@ source as (
 renamed as (
 
     select
-        user_id
-        ,first_name
-        ,last_name
-        ,gender
-        ,date_of_birth
+        verified as status_verified,
+        user_id,
+        first_name,
+        last_name,
+        kana_first_name,
+        kana_last_name,
+        gender,
+        date_of_birth,
+        address_id,
+        updated_at
+
     from source
 
 )
