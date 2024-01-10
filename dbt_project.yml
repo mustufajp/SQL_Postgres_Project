@@ -25,4 +25,10 @@ models:
    intermediate:
     +materialized: view
     +schema: intermediate
+   marts:
+    +materialized: table
+    dashboard:
+      +schema: dashboard
+    marketing:
+      +schema: marketing
 

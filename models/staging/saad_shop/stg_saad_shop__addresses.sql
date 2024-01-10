@@ -20,10 +20,10 @@ renamed as (
         latitude,
         longitude,
         user_id,
-        'jp' as country,
+        case when country is null then 'jp' end as country,
         CONCAT(post_code, ' ', prefecture, ' ', city, ' ', town, ' ', line_one) AS combined_address
-    from source
 
+    from source
 )
 
-select * from renamed
+select* from renamed
