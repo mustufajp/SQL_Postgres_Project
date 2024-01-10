@@ -15,16 +15,16 @@ stores as (
 addresses as (
     select 
         address_id,
-        post_code,
-        prefecture,
-        city,
-        town,
-        line_one,
-        line_two,
-        latitude,
-        longitude,
-        country,
-        combined_address
+        post_code as store_post_code,
+        prefecture as store_prefecture,
+        city as store_city,
+        town as store_town,
+        line_one as store_line_one,
+        line_two as store_line_two,
+        latitude as store_latitude,
+        longitude as store_longtitude,
+        country as store_country,
+        combined_address as store_combined_address
      from {{ ref("stg_saad_shop__addresses") }}
      ),
 
