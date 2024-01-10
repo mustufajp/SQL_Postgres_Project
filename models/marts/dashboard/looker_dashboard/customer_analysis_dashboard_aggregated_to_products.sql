@@ -5,7 +5,7 @@ select *
 from {{ ref('int_sales_aggregated_to_product') }}
 ),
 
-products as (
+customer_analysis_dashboard_aggregated_to_products as (
 
     select {{ dbt_utils.star(from=ref('int_sales_aggregated_to_product'), except=[
     "key",
@@ -20,4 +20,4 @@ products as (
     from int_sales_aggregated_to_product
 )
 
-select * from products
+select * from customer_analysis_dashboard_aggregated_to_products
