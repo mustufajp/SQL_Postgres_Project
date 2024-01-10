@@ -15,7 +15,6 @@ renamed as (
         sku_id,
         quantity,
         price_at_purchase,
-        key,
         discounted_amount as product_discounted_amount,
         id as sku_transaction_id,
         point_back_amount as product_point_back_amount,
