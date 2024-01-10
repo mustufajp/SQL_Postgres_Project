@@ -13,7 +13,7 @@ renamed as (
         ,amount as transaction_amount
         ,point_amount as transaction_point_amount
         ,real_world_amount as transaction_real_world_amount
-        ,sender_id as customer_id
+        ,sender_id
         ,created_at as transaction_date
         ,type as transaction_type
         ,parent_transaction_id
