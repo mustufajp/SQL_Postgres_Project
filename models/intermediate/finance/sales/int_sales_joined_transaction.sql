@@ -6,7 +6,7 @@ sales as (
         sales_amount,
         sales_type,
         employee_id,
-        sales_store_id,
+        store_id,
         points_given,
         points_used,
         total_discount,

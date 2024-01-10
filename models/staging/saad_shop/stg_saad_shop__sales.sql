@@ -14,7 +14,7 @@ renamed as (
         amount AS sales_amount,
         type AS sales_type,
         employee_id,
-        store_id AS sales_store_id,
+        store_id,
         points_given,
         points_used,
         total_discount,

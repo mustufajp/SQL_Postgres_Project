@@ -33,7 +33,7 @@ transaction_id,
 sales_id,
 sender_id as customer_id,
 employee_id,
-sales_store_id,
+store_id,
 
 --transaction detail
 case when is_refund=0 then sales_amount else 0 end as sales_amount,
