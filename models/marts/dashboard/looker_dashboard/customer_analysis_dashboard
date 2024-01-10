@@ -1,23 +1,36 @@
 with 
-int_joined_user_info_to_sales as 
+sales as 
 (
     select *
-    from {{ ref('int_joined_user_info_to_sales') }}
+    from {{ ref('int_refunds_removed_from_sales_transaction') }}
 ),
 
-sales as (select 
-{{ dbt_utils.star(from=ref('int_joined_user_info_to_sales'), except=[
-    "affiliate_commission_point",
-    "affiliate_commission_amount",
-    "custom_discount_price",
-    "custom_discount_coupon",
-    "parent_transaction_id",
-    "store_address_id",
-    "employee_id",
-    "user_id"
-]) }}
-from int_joined_user_info_to_sales)
+employee_info as (
+    select *
+    from {{ ref('int_add_info_to_employee') }}
+),
+
+customer_info as (
+    select *
+    from {{ ref('int_add_addresses_to_user_info') }}
+
+)
+
+store_info as (
+    select *
+    from {{ ref('int_address_joined_to_store') }}
+)
+
+customer_analysis_dashboard as (
+    select *
+    from sales
+    left join employee_info
+    left join customer_info
+    left join store_info
+    
+    )
 
 select 
- *
-from sales
+*
+
+from customer_analysis_dashboard
