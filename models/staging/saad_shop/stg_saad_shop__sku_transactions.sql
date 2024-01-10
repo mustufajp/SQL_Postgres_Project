@@ -20,8 +20,8 @@ renamed as (
         id as sku_transaction_id,
         point_back_amount as product_point_back_amount,
         point_spent_per as product_point_spent_per,
-        custom_point_back_rate,
-        point_back_rate
+        custom_point_back_rate as product_custom_point_back_rate,
+        point_back_rate as product_point_back_rate
 
     from source
 
