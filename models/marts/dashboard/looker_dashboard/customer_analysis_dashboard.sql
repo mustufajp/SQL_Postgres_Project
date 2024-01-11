@@ -2,7 +2,7 @@ with
 sales as 
 (
     select *
-    from {{ ref('int_refunds_removed_from_sales_transaction') }}
+    from {{ ref('int_added_first_purchase_date') }}
 ),
 
 employee_info as (
