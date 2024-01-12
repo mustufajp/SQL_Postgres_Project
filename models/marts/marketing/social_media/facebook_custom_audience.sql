@@ -8,7 +8,7 @@ with
         'jp' as country,
         customer_post_code as zip
         from {{ ref('int_add_addresses_to_user_info') }}
-    ),
+    )
 
 
 
