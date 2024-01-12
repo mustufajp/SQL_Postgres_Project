@@ -16,7 +16,7 @@ customer_analysis_dashboard as
         
         ]) }}
     from {{ ref('int_joined_sales_emolyee_customer_store_info') }}
-),
+)
 
 select 
 *
