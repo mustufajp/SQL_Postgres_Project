@@ -9,8 +9,8 @@ sales as (
 monthly_churn as (
     select
     date_trunc('month', sales_date) as year_month,
+    count(distinct customer_id) as distinct_customers,
     count (distinct case when date_trunc('month', sales_date)=date_trunc('month', last_purchase) then customer_id end) as last_purchase_customers,
-    count(distinct customer_id) as distinct_customers
     from sales
     group by date_trunc('month', sales_date)
 ),
