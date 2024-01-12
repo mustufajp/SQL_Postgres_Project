@@ -4,13 +4,22 @@ sales as (
 
     select *
     from {{ ref('int_added_first_purchase_date') }}
-),
+)
 
 monthly_churn as (
     select
     date_trunc('month', sales_date) as year_month,
     count(distinct customer_id) as distinct_customers,
-    count (distinct case when date_trunc('month', sales_date)=date_trunc('month', last_purchase) then customer_id end) as last_purchase_customers
+    count (distinct case when date_trunc('month', sales_date)=date_trunc('month', last_purchase) then customer_id end) as last_purchase_customers,
+    COUNT(DISTINCT CASE
+        WHEN date_trunc('month', sales_date) + interval '1 month' != date_trunc('month', current_date) AND
+             date_trunc('month', sales_date) = date_trunc('month', last_purchase) THEN customer_id
+             
+        WHEN date_trunc('month', sales_date) + interval '1 month' = date_trunc('month', current_date) AND
+             sales_date BETWEEN date_trunc('month', sales_date) AND current_date - interval '1 month' AND
+             date_trunc('month', sales_date) = date_trunc('month', last_purchase) THEN customer_id
+    END) AS last_purchase_customers
+
     from sales
     group by date_trunc('month', sales_date)
 ),
