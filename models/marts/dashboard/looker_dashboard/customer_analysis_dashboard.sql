@@ -1,8 +1,9 @@
 with 
 sales as 
 (
-    select *
-    from {{ ref('int_added_first_purchase_date') }}
+    select 
+    {{ dbt_utils.star(from=ref('int_added_churn_rate'), except=["year_month"]) }}
+    from {{ ref('int_added_churn_rate') }}
 ),
 
 employee_info as (
