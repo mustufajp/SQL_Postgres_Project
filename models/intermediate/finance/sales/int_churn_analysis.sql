@@ -26,12 +26,11 @@ churn_rate AS (
         monthly_churn AS t2 ON t1.year_month = t2.year_month + interval '1 month'
         ),
 
-int_churn_analysis as (
-    select 
+    int_churn_analysis as  (
+        select 
         year_month,
-        (CAST (churned_customer AS float )/CAST ( distinct_customers AS float ))*100 as churn
+        (CAST (churned_customers AS float )/CAST ( distinct_customers AS float ))*100 as churn
         from churn_rate
-)
+    )
 
-select *
-from int_churn_analysis
+select * from int_churn_analysis
