@@ -8,7 +8,6 @@ sales as (
 
 monthly_churn as (
     select
-    customer_id,
     date_trunc('month', sales_date) as year_month,
     count(distinct customer_id) as distinct_customers,
     COUNT(DISTINCT CASE
@@ -21,7 +20,7 @@ monthly_churn as (
     END) AS last_purchase_customers
 
     from sales
-    group by date_trunc('month', sales_date),customer_id
+    group by date_trunc('month', sales_date)
 ),
 
 churn_rate AS (
@@ -38,7 +37,7 @@ churn_rate AS (
     int_churn_analysis as  (
         select 
         year_month,
-        CAST (churned_customers AS float )/CAST ( distinct_customers AS float ) as churn
+        CAST (churned_customers AS float )/NULLIF(CAST ( distinct_customers AS float ),0) as churn
         from churn_rate
     )
 
