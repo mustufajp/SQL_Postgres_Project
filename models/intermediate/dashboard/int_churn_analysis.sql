@@ -37,7 +37,7 @@ churn_rate AS (
     int_churn_analysis as  (
         select 
         year_month,
-        (CAST (churned_customers AS float )/CAST ( distinct_customers AS float ))*100 as churn
+        CAST (churned_customers AS float )/CAST ( distinct_customers AS float ) as churn
         from churn_rate
     )
 
