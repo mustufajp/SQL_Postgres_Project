@@ -3,7 +3,7 @@ with
 sales as (
 
     select *
-    from {{ ref('int_added_first_purchase_date') }}
+    from {{ ref('int_joined_sales_emolyee_customer_store_info') }}
 ),
 
 monthly_churn as (
@@ -20,7 +20,7 @@ monthly_churn as (
     END) AS last_purchase_customers
 
     from sales
-    group by date_trunc('month', sales_date)
+    group by year_month
 ),
 
 churn_rate AS (
@@ -42,3 +42,4 @@ churn_rate AS (
     )
 
 select * from int_churn_analysis
+
