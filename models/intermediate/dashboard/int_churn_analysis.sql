@@ -56,7 +56,7 @@ with
             customer_gender
     ),
 
-    churn_rate as (
+    int_churn_analysis as (
         select
             t1.year_month,
             t1.distinct_customers,
@@ -77,13 +77,14 @@ with
             monthly_churn as t2 on t1.year_month = t2.year_month + interval '1 month'
     ),
 
-    int_churn_analysis as (
-        select
-            year_month,
-           cast(sum(churned_customers)
-            / nullif(sum(distinct_customers), 0) as float) as churn
-        from churn_rate
-        group by year_month )
+     
+    --as (
+        -- select
+        --     year_month,
+        --    cast(sum(churned_customers)
+        --     / nullif(sum(distinct_customers), 0) as float) as churn
+        -- from churn_rate
+        -- group by year_month )
 
 select *
 from int_churn_analysis
