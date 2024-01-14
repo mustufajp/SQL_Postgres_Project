@@ -75,7 +75,7 @@ with
         from monthly_churn as t1
         left join
             monthly_churn as t2 on t1.year_month = t2.year_month + interval '1 month'
-    ),
+    )
 
      
     --as (
