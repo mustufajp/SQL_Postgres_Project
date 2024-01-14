@@ -1,19 +1,12 @@
 with
 
-    sales as (select * from {{ ref("int_joined_sales_emolyee_customer_store_info") }}),
+    sales as (
+        select * from {{ ref("int_joined_sales_emolyee_customer_store_info") }}
+        ),
 
     monthly_churn as (
         select
             date_trunc('month', sales_date) as year_month,
-            customer_age,
-            customer_category,
-            is_customer_email_verified,
-            is_magazine_subscribed,
-            is_agree_to_term_of_service,
-            customer_prefecture,
-            employee_type,
-            store_short_name,
-            store_prefecture,
             count(distinct customer_id) as distinct_customers,
             count(
                 distinct case
@@ -34,10 +27,8 @@ with
                         = date_trunc('month', last_purchase)
                     then customer_id
                 end
-            ) as last_purchase_customers
-
-        from sales
-        group by year_month,
+            ) as last_purchase_customers,
+        --segements
             customer_age,
             customer_category,
             is_customer_email_verified,
@@ -46,14 +37,31 @@ with
             customer_prefecture,
             employee_type,
             store_short_name,
-            store_prefecture
+            store_prefecture,
+            customer_gender
+
+        from sales
+        group by 
+            year_month,
+        --segments
+            customer_age,
+            customer_category,
+            is_customer_email_verified,
+            is_magazine_subscribed,
+            is_agree_to_term_of_service,
+            customer_prefecture,
+            employee_type,
+            store_short_name,
+            store_prefecture,
+            customer_gender
     ),
 
     churn_rate as (
         select
             t1.year_month,
-            cast( t1.distinct_customers as float) as distinct_customers,
-            
+            t1.distinct_customers,
+            t2.last_purchase_customers as churned_customers,
+            -- segements
             t1.customer_age,
             t1.customer_category,
             t1.is_customer_email_verified,
@@ -63,7 +71,7 @@ with
             t1.employee_type,
             t1.store_short_name,
             t1.store_prefecture,
-            cast(t2.last_purchase_customers as float) as churned_customers
+            t1.customer_gender
         from monthly_churn as t1
         left join
             monthly_churn as t2 on t1.year_month = t2.year_month + interval '1 month'
@@ -72,8 +80,8 @@ with
     int_churn_analysis as (
         select
             year_month,
-           sum(churned_customers)
-            / nullif(sum(distinct_customers), 0) as churn
+           cast(sum(churned_customers)
+            / nullif(sum(distinct_customers), 0) as float) as churn
         from churn_rate
         group by year_month )
 
