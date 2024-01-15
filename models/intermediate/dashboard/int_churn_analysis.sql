@@ -49,7 +49,7 @@ with
         select
             year_month,
            cast(sum(churned_customers)
-            / nullif(sum(distinct_customers), 0) as float) as churn
+            / nullif(sum(distinct_customers), 0) as float) as churn_rate
         from churn_calc_join
         group by year_month )
 
