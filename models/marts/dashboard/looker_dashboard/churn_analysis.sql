@@ -1,12 +1,7 @@
 with 
 
 churn_rate as (
-    select 
-
-    {{ dbt_utils.star(from=ref('int_churn_analysis_segment'), except=[
-        "distinct_customers",
-        "churned_customers", 
-        ]) }}
+    select *
     from {{ ref('int_churn_analysis_segment') }}
 )
 
