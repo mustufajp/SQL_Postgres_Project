@@ -5,6 +5,7 @@ with
         sku_id,
         product_quantity,
         price_at_purchase,
+        product_discounted_amount,
         sku_transaction_id
         from {{ ref("stg_saad_shop__sku_transactions") }}
         ),
