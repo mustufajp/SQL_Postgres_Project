@@ -32,4 +32,3 @@ customer_analysis_dashboard as
 select 
 *
 from customer_analysis_dashboard
-where days_until_birthday < 0
