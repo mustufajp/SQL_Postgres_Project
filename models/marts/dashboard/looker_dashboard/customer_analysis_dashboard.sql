@@ -16,14 +16,20 @@ customer_analysis_dashboard as
         "year_month"
         ]) }},
     DATE_PART('day', CURRENT_DATE AT TIME ZONE 'Asia/Tokyo'-sales_date) as days_last_purchase,
-    CASE 
-        WHEN EXTRACT(DOY FROM customer_date_of_birth) >= EXTRACT(DOY FROM CURRENT_DATE AT TIME ZONE 'Asia/Tokyo')
-        THEN EXTRACT(DOY FROM customer_date_of_birth) - EXTRACT(DOY FROM CURRENT_DATE AT TIME ZONE 'Asia/Tokyo')
-        ELSE EXTRACT(DOY FROM customer_date_of_birth + INTERVAL '1 year') - EXTRACT(DOY FROM CURRENT_DATE AT TIME ZONE 'Asia/Tokyo')
-    END AS days_until_birthday
+    CAST(
+        EXTRACT(
+            epoch FROM 
+            (CASE
+                WHEN DATE_TRUNC('year', CURRENT_DATE) + (DATE_PART('doy', customer_date_of_birth) - 1) * INTERVAL '1 day' >= CURRENT_DATE
+                THEN DATE_TRUNC('year', CURRENT_DATE) + (DATE_PART('doy', customer_date_of_birth) - 1) * INTERVAL '1 day' - CURRENT_DATE
+                ELSE DATE_TRUNC('year', CURRENT_DATE) + INTERVAL '1 year' + (DATE_PART('doy', customer_date_of_birth) - 1) * INTERVAL '1 day' - CURRENT_DATE
+            END)
+        ) / 86400 AS INTEGER
+    ) AS days_until_birthday
     from {{ ref('int_churn_analysis_added_to_sales') }}
 )
 
 select 
 *
 from customer_analysis_dashboard
+where days_until_birthday < 0
