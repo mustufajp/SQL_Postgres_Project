@@ -15,7 +15,7 @@ customer_analysis_dashboard as
         "points_given",
         "year_month"
         ]) }},
-    DATE_PART('day', CURRENT_DATE AT TIME ZONE 'Asia/Tokyo'-sales_date) as days_last_purchase,
+    DATE_PART('day', CURRENT_DATE AT TIME ZONE 'Asia/Tokyo'-last_purchase) as days_last_purchase,
     CAST(
         EXTRACT(
             epoch FROM 
