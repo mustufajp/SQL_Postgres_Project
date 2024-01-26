@@ -10,6 +10,9 @@ sales as (
     select 
     sales_date,
     transaction_id,
+    customer_id,
+    customer_first_name,
+    customer_last_name,
     customer_age,
     customer_category,
     customer_payment_method,
