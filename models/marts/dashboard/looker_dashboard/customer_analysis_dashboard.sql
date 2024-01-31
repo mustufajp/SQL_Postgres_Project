@@ -25,7 +25,9 @@ customer_analysis_dashboard as
                 ELSE DATE_TRUNC('year', CURRENT_DATE) + INTERVAL '1 year' + (DATE_PART('doy', customer_date_of_birth) - 1) * INTERVAL '1 day' - CURRENT_DATE
             END)
         ) / 86400 AS INTEGER
-    ) AS days_until_birthday
+    ) AS days_until_birthday,
+    case when customer_id is null then 0
+    else 1 end as member_status
     from {{ ref('int_churn_analysis_added_to_sales') }}
 )
 
