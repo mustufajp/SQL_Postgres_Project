@@ -2,8 +2,7 @@ with
 
 product as (
     select 
-    *,
-    (product_quantity*price_at_purchase)-(product_quantity*product_discounted_amount) as sales_amount
+    *
     from {{ ref('int_sales_aggregated_to_product') }}
 ),
 sales as (
