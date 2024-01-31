@@ -58,7 +58,7 @@ int_churn_analysis_added_to_sales as (
     select *
     from sales
     left join churn_analysis
-    on date_trunc('month',sales.sales_date)=churn_rate.year_month)
+    on date_trunc('month',sales.sales_date)=churn_analysis.year_month)
 
 select *
 from int_churn_analysis_added_to_sales
