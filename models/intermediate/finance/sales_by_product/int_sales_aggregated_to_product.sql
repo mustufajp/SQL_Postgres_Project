@@ -25,6 +25,7 @@ with
         ),
     int_sales_aggregated_to_product as (
         select *
+        ,(product_quantity*price_at_purchase)-(product_quantity*product_discounted_amount) as product_sales_amount
         from sku_transactions
         left join skus using (sku_id)
         order by transaction_id

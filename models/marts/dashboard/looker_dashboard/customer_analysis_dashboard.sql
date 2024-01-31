@@ -25,7 +25,12 @@ customer_analysis_dashboard as
                 ELSE DATE_TRUNC('year', CURRENT_DATE) + INTERVAL '1 year' + (DATE_PART('doy', customer_date_of_birth) - 1) * INTERVAL '1 day' - CURRENT_DATE
             END)
         ) / 86400 AS INTEGER
-    ) AS days_until_birthday
+    ) AS days_until_birthday,
+    case 
+    when customer_id is not null and sales_date=first_purchase then '新規ユーザー'
+    when customer_id is not null then 'ユーザー'
+    when customer_id is null then '非ユーザー'
+    end as member_status
     from {{ ref('int_churn_analysis_added_to_sales') }}
 )
 
