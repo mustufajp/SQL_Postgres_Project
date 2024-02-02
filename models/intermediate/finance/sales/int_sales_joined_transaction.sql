@@ -33,11 +33,20 @@ transaction as (
         parent_transaction_id
     from {{ ref('stg_saad_shop__transactions') }}
 ),
+sku_transaction as (
+    select
+    transaction_id,
+    sum(product_quantity) as product_quantity
+    from  {{ ref("stg_saad_shop__sku_transactions") }}
+    group by transaction_id
+),
 
 int_sales_joined_transaction as (
     select *
     from sales
     inner join transaction 
+    USING (transaction_id)
+    left join sku_transaction
     USING (transaction_id)
 )
 
