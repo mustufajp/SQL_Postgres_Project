@@ -38,7 +38,8 @@ with
             employee_type,
             store_short_name,
             store_prefecture,
-            customer_gender
+            customer_gender,
+            sum (sales_amount)as sales_amount
 
         from sales
         group by 
@@ -61,6 +62,7 @@ with
             t1.year_month,
             t1.distinct_customers,
             t2.last_purchase_customers as churned_customers,
+            t1.sales_amount,
             -- segements
             t1.customer_age,
             t1.customer_category,
