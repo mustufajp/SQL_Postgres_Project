@@ -49,5 +49,6 @@ int_add_addresses_to_user_info as (
     using (address_id)
 )
 
-select * from int_add_addresses_to_user_info
-
+select 
+*
+from int_add_addresses_to_user_info
