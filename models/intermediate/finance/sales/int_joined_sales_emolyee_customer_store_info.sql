@@ -45,6 +45,7 @@ store_info as (
         store_id,
 
         --information to include
+        is_store_hidden,
         store_short_name,
         store_post_code,
         store_prefecture,
