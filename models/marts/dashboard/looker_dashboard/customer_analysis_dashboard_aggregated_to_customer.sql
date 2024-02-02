@@ -50,9 +50,10 @@ customer_analysis_dashboard_aggregated_to_customer as (
     select
     *
     from customer_info
-    inner join sales 
+    left join sales 
     USING (customer_id) 
 )
 
-select *
+select 
+*
 from customer_analysis_dashboard_aggregated_to_customer
