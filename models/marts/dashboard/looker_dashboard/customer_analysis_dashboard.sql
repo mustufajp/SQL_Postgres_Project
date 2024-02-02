@@ -27,9 +27,9 @@ customer_analysis_dashboard as
         ) / 86400 AS INTEGER
     ) AS days_until_birthday,
     case 
-    when customer_id is not null and sales_date=first_purchase then '新規ユーザー'
-    when customer_id is not null then 'ユーザー'
-    when customer_id is null then '非ユーザー'
+    when customer_id is not null and sales_date=first_purchase then '新規会員'
+    when customer_id is not null then '会員'
+    when customer_id is null then '非会員'
     end as member_status
     from {{ ref('int_churn_analysis_added_to_sales') }}
 )
