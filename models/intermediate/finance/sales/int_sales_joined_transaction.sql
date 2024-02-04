@@ -1,24 +1,15 @@
 with
 sales as (
-    select 
-        sales_id,
-        transaction_id,
-        sales_amount,
-        sales_type,
-        employee_id,
-        store_id,
-        points_given,
-        points_used,
-        total_discount,
-        customer_age,
-        customer_category,
-        customer_payment_type,
-        customer_payment_method,
-        sales_date,
-        affiliate_commission_point,
-        affiliate_commission_amount,
-        custom_discount_price,
-        custom_discount_coupon
+    select
+     {{ dbt_utils.star(from=ref('stg_saad_shop__sales'), except=[
+        'affiliate_commission_point',
+        'affiliate_commission_amount',
+        'custom_discount_price',
+        'custom_discount_coupon',
+        'custom_point_back'
+        'customer_payment_type',
+        'customer_payment_method',
+        ]) }}
     from {{ ref('stg_saad_shop__sales') }}
 
 ),
@@ -26,10 +17,8 @@ sales as (
 transaction as (
     select 
         transaction_id,
-        transaction_real_world_amount,
         sender_id,
         receiver_id,
-        transaction_type,
         parent_transaction_id
     from {{ ref('stg_saad_shop__transactions') }}
 ),
