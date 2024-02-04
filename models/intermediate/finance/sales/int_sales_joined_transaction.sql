@@ -9,7 +9,8 @@ with
                         "affiliate_commission_amount",
                         "custom_discount_price",
                         "custom_discount_coupon",
-                        "custom_point_back" "customer_payment_type",
+                        "custom_point_back",
+                        "customer_payment_type",
                         "customer_payment_method",
                     ],
                 )
