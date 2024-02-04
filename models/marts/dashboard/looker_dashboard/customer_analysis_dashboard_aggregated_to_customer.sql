@@ -27,7 +27,7 @@ sales as (
         sum(points_given) as points_given,
         sum(points_used) as points_used,
         sum(total_discount) as total_discount,
-        sum(product_quantity)as product_quantity,
+        sum(product_quantity_sold)as product_quantity,
         max(customer_category) as customer_category,
         max(customer_age) as est_customer_age,
         first_purchase,
