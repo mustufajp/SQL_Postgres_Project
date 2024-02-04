@@ -24,22 +24,11 @@ employee_info as (
     where user_type !='customer'
 ),
 
-address_info as (
-    select
-        store_id,
-        store_short_name,
-        store_name,
-        store_phone_number,
-        store_combined_address
-    from {{ ref('int_address_joined_to_store') }}
-),
-
 int_add_info_to_employee as (
 
     select *
     from employee_users
     left join employee_info using (employee_id)
-    left join address_info on employee_store_id = store_id
 )
 
 select * from int_add_info_to_employee
