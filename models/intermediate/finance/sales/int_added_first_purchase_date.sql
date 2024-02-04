@@ -3,7 +3,7 @@ with
 sales as (
 
     select *
-    from {{ ref('int_refunds_removed_from_sales_transaction') }}
+    from {{ ref('int_sales_joined_transaction') }}
 ),
 
 int_added_first_purchase_date as 

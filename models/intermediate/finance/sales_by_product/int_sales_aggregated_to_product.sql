@@ -1,35 +1,30 @@
-with
-    sku_transactions as (
-        select
-        transaction_id,
-        sku_id,
-        product_quantity,
-        price_at_purchase,
-        product_discounted_amount,
-        sku_transaction_id
-        from {{ ref("stg_saad_shop__sku_transactions") }}
-        ),
-    skus as (
-        select 
-        sku_id,
-        sku_code,
-        current_price,
-        total_inventory,
-        product_inception_at,
-        product_updated_at,
-        product_category,
-        product_code,
-        product_type,
-        product_size
-        from {{ ref("stg_saad_shop__skus") }}
-        ),
-    int_sales_aggregated_to_product as (
-        select *
-        ,(product_quantity*price_at_purchase)-(product_quantity*product_discounted_amount) as product_sales_amount
-        from sku_transactions
-        left join skus using (sku_id)
-        order by transaction_id
-    )
+with 
 
-select * FROM int_sales_aggregated_to_product
+product as (
+    select 
+    *
+    from {{ ref('int_skus_joined_to_sku_transaction') }}
+),
+sales as (
+    select 
+     {{ dbt_utils.star(from=ref('customer_analysis_dashboard'), except=[
+        "sales_amount",
+        "points_used",
+        "total_discount",
+        "product_quantity"
+        ]) }}
 
+    from {{ ref('customer_analysis_dashboard') }}
+    ),
+
+int_sales_aggregated_to_product as (
+    select *
+    ,case when sales_type='refund' then -1*((product_quantity*price_at_purchase)-(product_quantity*product_discounted_amount)) else (product_quantity*price_at_purchase)-(product_quantity*product_discounted_amount)end as product_sales_amount
+    from product
+    left join sales 
+    using (transaction_id)
+
+)
+
+select *
+from int_sales_aggregated_to_product
