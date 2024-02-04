@@ -24,7 +24,7 @@ with
         from {{ ref("stg_saad_shop__transactions") }}
     ),
     sku_transaction as (
-        select transaction_id, sum(product_quantity) as product_quantity
+        select transaction_id, sum(product_quantity) as product_quantity_sold
         from {{ ref("stg_saad_shop__sku_transactions") }}
         group by transaction_id
     ),
