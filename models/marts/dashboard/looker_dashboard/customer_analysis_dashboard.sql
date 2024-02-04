@@ -7,7 +7,9 @@ customer_analysis_dashboard as
         "employee_id",
         "sales_id",
         "points_given",
-        "year_month"
+        "year_month",
+        "sender_id",
+        "receiver_id"
         ]) }},
     DATE_PART('day', CURRENT_DATE AT TIME ZONE 'Asia/Tokyo'-last_purchase) as days_last_purchase,
     CAST(
