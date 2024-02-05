@@ -37,7 +37,5 @@ customer_analysis_dashboard as
 )
 
 select 
-customer_category,
-count(transaction_id)
+*
 from customer_analysis_dashboard
-group by customer_category
