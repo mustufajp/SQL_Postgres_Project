@@ -34,7 +34,9 @@ with
             *,
             case
                 when sales_type = 'refund' then receiver_id else sender_id
-            end as customer_id
+            end as customer_id,
+            CAST(sales_at AS DATE) as sales_date
+
         from sales
         inner join transaction using (transaction_id)
         left join sku_transaction using (transaction_id)

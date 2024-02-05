@@ -22,7 +22,7 @@ renamed as (
         gender AS customer_category,
         COALESCE(REPLACE((methods->0->>'type')::text, '"', ''), '') AS customer_payment_type,
         COALESCE(REPLACE((methods->0->>'method')::text, '"', ''), '') AS customer_payment_method,
-        created_at AS sales_date,
+        created_at AS sales_at,
         affiliate_commission_point,
         affiliate_commission_amount,
         (custom_discount->>'price')::numeric AS custom_discount_price,
