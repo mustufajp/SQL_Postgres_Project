@@ -16,7 +16,7 @@ renamed as (
         kana_first_name,
         kana_last_name,
         gender,
-        date_of_birth,
+        cast (date_of_birth as date) as date_of_birth,
         address_id,
         updated_at as user_profile_updated_at
     from source
