@@ -11,7 +11,8 @@ sales as (
         "sales_amount",
         "points_used",
         "total_discount",
-        "product_quantity"
+        "product_quantity",
+        "product_quantity_sold"
         ]) }}
 
     from {{ ref('customer_analysis_dashboard') }}
