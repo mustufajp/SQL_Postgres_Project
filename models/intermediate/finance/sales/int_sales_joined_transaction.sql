@@ -26,10 +26,9 @@ with
     sku_transaction as (
         select 
         transaction_id, 
-        max(is_gift) as is_gift,
-        sum(product_quantity) as product_quantity_sold
-
-        from {{ ref('int_sales_aggregated_to_product') }}
+        sum(product_quantity) as product_quantity_sold,
+        max(is_gift)
+        from {{ ref('int_skus_joined_to_sku_transaction') }}
         group by transaction_id
     ),
 
