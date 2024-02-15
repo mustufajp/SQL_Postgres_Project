@@ -30,5 +30,16 @@ with
         order by transaction_id
     )
 
-select * FROM int_skus_joined_to_sku_transaction
+select t.* 
+    ,CASE 
+        WHEN EXISTS (
+            SELECT 1 
+            FROM int_skus_joined_to_sku_transaction sub
+            WHERE sub.transaction_id = t.transaction_id
+            AND sub.product_category ILIKE '%box%'
+        ) THEN 'ギフト'
+        ELSE '非ギフト'
+    END AS is_gift
+
+FROM int_skus_joined_to_sku_transaction t
 
