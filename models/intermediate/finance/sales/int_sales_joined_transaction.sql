@@ -24,8 +24,12 @@ with
         from {{ ref("stg_saad_shop__transactions") }}
     ),
     sku_transaction as (
-        select transaction_id, sum(product_quantity) as product_quantity_sold
-        from {{ ref("stg_saad_shop__sku_transactions") }}
+        select 
+        transaction_id, 
+        max(is_gift) as is_gift,
+        sum(product_quantity) as product_quantity_sold
+
+        from {{ ref('int_sales_aggregated_to_product') }}
         group by transaction_id
     ),
 

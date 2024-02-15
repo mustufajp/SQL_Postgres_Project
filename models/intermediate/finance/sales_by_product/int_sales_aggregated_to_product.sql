@@ -2,8 +2,17 @@ with
 
 product as (
     select 
-    *
-    from {{ ref('int_skus_joined_to_sku_transaction') }}
+    t.*,
+    CASE 
+        WHEN EXISTS (
+            SELECT 1 
+            FROM {{ ref('int_skus_joined_to_sku_transaction') }} sub
+            WHERE sub.transaction_id = t.transaction_id
+            AND sub.product_category ILIKE '%box%'
+        ) THEN 'ギフト'
+        ELSE '非ギフト'
+    END AS is_gift
+    from {{ ref('int_skus_joined_to_sku_transaction') }} t
 ),
 sales as (
     select 
