@@ -1,26 +1,27 @@
 with
     sku_transactions as (
         select
-        transaction_id,
-        sku_id,
-        product_quantity,
-        price_at_purchase,
-        product_discounted_amount,
-        sku_transaction_id
+         {{ dbt_utils.star(from=ref('stg_saad_shop__sku_transactions'), except=[
+        "product_custom_discount_coupon",
+        "product_custom_discount_price",
+        "sku_transaction_key",
+        "product_point_back_amount",
+        "product_point_spent_per",
+        "product_custom_point_back_rate",
+        "product_point_back_rate"
+        ]) }}
         from {{ ref("stg_saad_shop__sku_transactions") }}
         ),
     skus as (
         select 
-        sku_id,
-        sku_code,
-        current_price,
-        total_inventory,
-        product_inception_at,
-        product_updated_at,
-        product_category,
-        product_code,
-        product_type,
-        product_size
+        {{ dbt_utils.star(from=ref('stg_saad_shop__skus'), except=[
+        "product_id",
+        "saad_sku_id",
+        "total_inventory",
+        "product_code",
+        "product_type",
+        "product_size"
+        ]) }}
         from {{ ref("stg_saad_shop__skus") }}
         ),
     int_skus_joined_to_sku_transaction as (
