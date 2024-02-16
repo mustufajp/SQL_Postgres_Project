@@ -40,14 +40,8 @@ sales as (
 ),
 customer_analysis_dashboard_aggregated_to_customer as (
     select
-    *
-    from customer_info
-    left join sales 
-    USING (customer_id) 
-)
+    *,
 
-select 
-*,
   CAST(
         EXTRACT(
             epoch FROM 
@@ -58,5 +52,11 @@ select
             END)
         ) / 86400 AS INTEGER
     ) AS days_until_birthday
+    from customer_info
+    left join sales 
+    USING (customer_id) 
+)
 
+select 
+*
 from customer_analysis_dashboard_aggregated_to_customer
