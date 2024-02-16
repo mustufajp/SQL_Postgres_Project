@@ -22,7 +22,7 @@ select
 *,
 MIN(sales_date) OVER (PARTITION BY customer_id) AS first_purchase,
 MAX(sales_date) OVER (PARTITION BY customer_id) AS last_purchase,
-LEAD(date(sales_date)) OVER (PARTITION BY customer_id order by sales_date )-date(sales_date) AS days_to_next_purchase,
+LEAD(date(sales_date)) OVER (PARTITION BY customer_id order by sales_date )-date(sales_date) AS days_to_next_purchase
 from sales
 order by customer_id
 )
