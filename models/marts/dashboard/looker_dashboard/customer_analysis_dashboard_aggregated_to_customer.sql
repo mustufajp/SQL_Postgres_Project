@@ -30,14 +30,14 @@ sales as (
         sum(product_quantity_sold)as product_quantity,
         max(customer_category) as customer_category,
         max(customer_age) as est_customer_age,
+        COUNT(transaction_id) as sales_counts
+
         first_purchase,
         last_purchase,
-        sales_counts
     from {{ ref('int_added_first_purchase_date') }}
     group by customer_id,
     first_purchase,
     last_purchase,
-    sales_counts
 ),
 customer_analysis_dashboard_aggregated_to_customer as (
     select
