@@ -29,3 +29,4 @@ order by customer_id
 
 select *
 from int_added_first_purchase_date
+
