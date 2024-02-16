@@ -23,6 +23,7 @@ renamed as (
         COALESCE(REPLACE((methods->0->>'type')::text, '"', ''), '') AS customer_payment_type,
         COALESCE(REPLACE((methods->0->>'method')::text, '"', ''), '') AS customer_payment_method,
         created_at AS sales_at,
+        CAST(created_at AS DATE) as sales_date,
         affiliate_commission_point,
         affiliate_commission_amount,
         (custom_discount->>'price')::numeric AS custom_discount_price,
