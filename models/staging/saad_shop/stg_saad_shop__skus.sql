@@ -20,7 +20,9 @@ renamed as (
         category as product_category,
         code as product_code,
         type as product_type,
-        size as product_size
+        size as product_size,
+        concat(t.product_category,t.product_code,product_type) as sku_code_na_size
+
 
     from source
 
