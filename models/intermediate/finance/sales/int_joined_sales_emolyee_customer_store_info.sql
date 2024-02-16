@@ -3,7 +3,7 @@ sales as
 (
     select 
     *
-    {{ ref('int_added_first_purchase_date') }}
+    from {{ ref('int_added_first_purchase_date') }}
 ),
 
 employee_info as (
