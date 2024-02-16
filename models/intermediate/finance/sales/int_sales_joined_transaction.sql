@@ -20,7 +20,10 @@ with
     ),
 
     transaction as (
-        select transaction_id, sender_id, receiver_id, parent_transaction_id
+        select 
+        transaction_id, 
+        sender_id, 
+        receiver_id
         from {{ ref("stg_saad_shop__transactions") }}
     ),
     sku_transaction as (
