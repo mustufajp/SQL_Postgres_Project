@@ -2,7 +2,17 @@ with
 
 sales as (
 
-    select *
+    select 
+      {{
+                dbt_utils.star(
+                    from=ref("int_sales_joined_transaction"),
+                    except=[
+                        "sales_id",
+                        "sender_id",
+                        "receiver_id"
+                    ],
+                )
+            }}
     from {{ ref('int_sales_joined_transaction') }}
 ),
 
