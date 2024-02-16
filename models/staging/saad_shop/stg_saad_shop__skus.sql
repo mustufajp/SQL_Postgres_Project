@@ -21,7 +21,6 @@ renamed as (
         code as product_code,
         type as product_type,
         size as product_size,
-        concat(category,code) as category_code,
         concat(category,code,type) as sku_code_na_size
 
 
