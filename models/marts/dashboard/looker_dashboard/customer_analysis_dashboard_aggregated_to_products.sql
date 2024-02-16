@@ -8,7 +8,7 @@ product as (
 
 customer_analysis_dashboard_aggregated_to_products as (
     select 
-    *,
+    *
     from product
 )
 
