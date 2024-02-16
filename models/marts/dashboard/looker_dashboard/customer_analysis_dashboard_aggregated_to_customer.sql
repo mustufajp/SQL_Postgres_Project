@@ -4,6 +4,7 @@ With customer_info as (
     customer_id,
     --info to include
     customer_phone_number,
+    customer_created_at,
     is_customer_email_verified,
     customer_email,
     is_magazine_subscribed,
