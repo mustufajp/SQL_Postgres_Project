@@ -8,9 +8,8 @@ product as (
 
 customer_analysis_dashboard_aggregated_to_products as (
     select 
-    t.*,
-    concat(t.product_category,t.product_code,product_type) as sku_code_na_size
-    from product t
+    *,
+    from product
 )
 
 SELECT 
