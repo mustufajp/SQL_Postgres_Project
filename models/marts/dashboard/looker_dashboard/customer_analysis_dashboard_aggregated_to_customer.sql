@@ -41,7 +41,10 @@ sales as (
 customer_analysis_dashboard_aggregated_to_customer as (
     select
     *,
-
+    case 
+    when sales_counts is null then '非購入会員'
+    when sales_counts is not null then '購入会員'
+    end as user_type,
   CAST(
         EXTRACT(
             epoch FROM 
