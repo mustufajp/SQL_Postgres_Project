@@ -8,56 +8,43 @@ sales as
 
 employee_info as (
     select
-    --joining key
-    employee_id,
-    --info to include
-    employee_type,
-    employee_status,
-    employee_first_name,
-    employee_last_name
+       {{ dbt_utils.star(from=ref('int_add_info_to_employee'), except=[
+        "employee_store_id",
+        "employee_phone_number",
+        "employee_email",
+        "employee_gender",
+        "employee_date_of_birth",
+        "employee_profile_updated_at"
+        ]) }}
     from {{ ref('int_add_info_to_employee') }}
-),
-
-customer_info as (
-    select
-    --joining key
-    customer_id,
-    --info to include
-    customer_phone_number,
-    is_customer_email_verified,
-    customer_email,
-    is_magazine_subscribed,
-    is_agree_to_term_of_service,
-    customer_first_name,
-    customer_last_name,
-    customer_gender,
-    customer_date_of_birth,
-    customer_post_code,
-    customer_prefecture,
-    customer_city,
-    customer_combined_address
-    from {{ ref('int_add_addresses_to_user_info') }}
 ),
 
 store_info as (
     select 
-        --joining key
-        store_id,
-
-        --information to include
-        is_store_hidden,
-        store_short_name,
-        store_post_code,
-        store_prefecture,
-        store_city,
-        store_combined_address
+         {{ dbt_utils.star(from=ref('int_address_joined_to_store'), except=[
+        "store_name",
+        "store_address_id",
+        "store_phone_number",
+        "store_created_at",
+        "store_updated_at",
+        "is_store_ecom_inv_hidden",
+        "address_id",
+        "store_post_code",
+        "store_city",
+        "store_town",
+        "store_line_one",
+        "store_line_two",
+        "store_latitude",
+        "store_longtitude",
+        "store_country",
+        "store_combined_address"
+        ]) }}
     from {{ ref('int_address_joined_to_store') }}
 ),
 
  int_joined_sales_emolyee_customer_store_info as (
     select *
     from sales
-    left join customer_info using (customer_id)
     left join employee_info using (employee_id)
     left join store_info using (store_id)
     )
