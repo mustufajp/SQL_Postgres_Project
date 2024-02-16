@@ -2,15 +2,7 @@ with
 customer_analysis_dashboard as 
 (
     select 
-    {{ dbt_utils.star(from=ref('int_churn_analysis_added_to_sales'), except=[
-        "store_id",
-        "employee_id",
-        "sales_id",
-        "points_given",
-        "year_month",
-        "sender_id",
-        "receiver_id"
-        ]) }},
+   *,
     case 
     when customer_id is not null and sales_date=first_purchase then '新規会員'
     when customer_id is not null then '既存会員'
