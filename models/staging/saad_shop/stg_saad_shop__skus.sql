@@ -23,8 +23,6 @@ renamed as (
         size as product_size,
         concat(category,code) as category_code,
         concat(category,code,type) as sku_code_na_size
-
-
     from source
 
 )
