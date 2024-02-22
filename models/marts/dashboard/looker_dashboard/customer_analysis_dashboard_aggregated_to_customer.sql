@@ -26,6 +26,9 @@ sales as (
         customer_id,
         store_short_name,
         store_prefecture,
+        is_store_hidden,
+        sales_type,
+        is_gift,
         sum(sales_amount) as sales_amount,
         avg(sales_amount) as avg_sales_amount,
         sum(points_given) as points_given,
@@ -39,8 +42,11 @@ sales as (
         last_purchase
     from {{ ref('int_joined_sales_emolyee_customer_store_info') }}
     group by customer_id,
+    is_store_hidden,
     store_short_name,
     store_prefecture,
+    sales_type,
+    is_gift,
     first_purchase,
     last_purchase
 ),
