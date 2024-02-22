@@ -24,7 +24,10 @@ sales as (
 
      select 
         customer_id,
+        store_short_name,
+        store_prefecture,
         sum(sales_amount) as sales_amount,
+        avg(sales_amount) as avg_sales_amount,
         sum(points_given) as points_given,
         sum(points_used) as points_used,
         sum(total_discount) as total_discount,
@@ -34,8 +37,10 @@ sales as (
         COUNT(transaction_id) as sales_counts,
         first_purchase,
         last_purchase
-    from {{ ref('int_added_first_purchase_date') }}
+    from {{ ref('int_joined_sales_emolyee_customer_store_info') }}
     group by customer_id,
+    store_short_name,
+    store_prefecture,
     first_purchase,
     last_purchase
 ),
