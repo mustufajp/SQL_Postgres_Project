@@ -54,4 +54,7 @@ sources:
           Similar to user_profile table but provides more detail.
       - name: store_inventories
         description: >
-          Similar to user_profile table but provides more detail.
+          available products for each inventories.
+      - name: total_sku_inventories
+        description: >
+          available products
