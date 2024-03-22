@@ -49,3 +49,9 @@ sources:
       - name: users
         description: >
           Similar to user_profile table but provides more detail.
+      - name: campaigns
+        description: >
+          Similar to user_profile table but provides more detail.
+      - name: store_inventories
+        description: >
+          Similar to user_profile table but provides more detail.
