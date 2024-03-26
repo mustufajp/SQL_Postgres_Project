@@ -58,3 +58,6 @@ sources:
       - name: total_sku_inventories
         description: >
           available products
+      - name: sku_cost_prices
+        description: >
+          cost per unit
