@@ -9,7 +9,10 @@ source as (
 renamed as (
 
     select
-    *
+    sku_code,
+    sku_id,
+    cost_unit_amount,
+    created_at
     from source
 
 )
