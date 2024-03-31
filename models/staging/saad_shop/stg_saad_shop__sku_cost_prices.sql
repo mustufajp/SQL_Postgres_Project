@@ -12,7 +12,7 @@ renamed as (
     sku_code,
     sku_id,
     cost_unit_amount,
-    created_at
+    created_at as cost_created_date
     from source
 
 )
