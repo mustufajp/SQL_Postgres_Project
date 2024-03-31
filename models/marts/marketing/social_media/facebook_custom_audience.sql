@@ -9,7 +9,8 @@ with
         customer_post_code as zip,
         customer_date_of_birth as dob,
         customer_gender as gen,
-        customer_created_at
+        customer_created_at,
+        customer_id
         from {{ ref('int_add_addresses_to_user_info') }}
     )
 
