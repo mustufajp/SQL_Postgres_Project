@@ -22,6 +22,7 @@ sales as (
 int_sales_aggregated_to_product as (
     select *
     ,case when sales_type='refund' then -1*((product_quantity*price_at_purchase)-(product_quantity*product_discounted_amount)) else (product_quantity*price_at_purchase)-(product_quantity*product_discounted_amount)end as product_sales_amount
+    ,case when sales_type='refund' then -1*(product_quantity*cost_unit_amount) else (product_quantity*cost_unit_amount)end as product_cost_amount
     from product
     left join sales 
     using (transaction_id)
