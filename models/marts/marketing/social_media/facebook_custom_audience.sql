@@ -8,7 +8,7 @@ with
         'jp' as country,
         customer_post_code as zip,
         customer_date_of_birth as dob,
-        customer_gender as gen,
+        case when customer_gender= 'male' then 'M' when customer_gender='female' then 'F' else null end as gen,
         customer_created_at,
         customer_id
         from {{ ref('int_add_addresses_to_user_info') }}
