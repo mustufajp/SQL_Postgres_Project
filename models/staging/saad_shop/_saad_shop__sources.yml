@@ -49,3 +49,15 @@ sources:
       - name: users
         description: >
           Similar to user_profile table but provides more detail.
+      - name: campaigns
+        description: >
+          Similar to user_profile table but provides more detail.
+      - name: store_inventories
+        description: >
+          available products for each stores.
+      - name: total_sku_inventories
+        description: >
+          available products
+      - name: sku_cost_prices
+        description: >
+          cost per unit
