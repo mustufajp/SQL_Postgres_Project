@@ -24,10 +24,17 @@ with
         ]) }}
         from {{ ref("stg_saad_shop__skus") }}
         ),
+    cost as (
+        select 
+        sku_id,
+        cost_unit_amount
+        from {{ ref("stg_saad_shop__sku_cost_prices") }}
+    ),
     int_skus_joined_to_sku_transaction as (
         select *
         from sku_transactions
         left join skus using (sku_id)
+        left join cost using (sku_id)
         order by transaction_id
     )
 
@@ -43,4 +50,3 @@ select t.*
     END AS is_gift
 
 FROM int_skus_joined_to_sku_transaction t
-
