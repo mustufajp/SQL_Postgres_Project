@@ -6,7 +6,8 @@ with
         customer_first_name as fn,
         customer_last_name as ln,
         'jp' as country,
-        customer_post_code as zip
+        customer_post_code as zip,
+        customer_created_at
         from {{ ref('int_add_addresses_to_user_info') }}
     )
 
