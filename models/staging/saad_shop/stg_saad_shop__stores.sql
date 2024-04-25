@@ -19,6 +19,7 @@ renamed as (
         updated_at as store_updated_at,
         hidden as is_store_hidden,
         ecom_inv_hidden as is_store_ecom_inv_hidden
+        closed as store_closed
 
     from source
 
