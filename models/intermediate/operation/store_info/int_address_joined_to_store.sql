@@ -9,7 +9,8 @@ stores as (
         store_created_at,
         store_updated_at,
         is_store_hidden,
-        is_store_ecom_inv_hidden
+        is_store_ecom_inv_hidden,
+        is_store_closed
     from {{ ref("stg_saad_shop__stores") }}
     ),
 addresses as (
