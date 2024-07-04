@@ -15,5 +15,6 @@ with
     )
 
 select
-   *
+*
 from customer_list
+where date_trunc('day',customer_created_at) > '2024-03-31'
