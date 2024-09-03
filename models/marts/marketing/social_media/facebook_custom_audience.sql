@@ -15,6 +15,7 @@ customer_list as (
         customer_date_of_birth as dob,
         case when customer_gender= 'male' then 'M' when customer_gender='female' then 'F' else null end as gen,
         customer_created_at,
+        sales_amount,
         customer_id
         from customer_list
     )
