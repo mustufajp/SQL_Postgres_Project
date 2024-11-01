@@ -25,5 +25,5 @@ facebook_offline_conversion as
 
 select *
 from facebook_offline_conversion
--- where date_trunc('day',event_time) > '2024-08-04'
+-- where date_trunc('day',event_time) > '2024-10-04'
 
