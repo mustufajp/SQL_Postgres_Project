@@ -23,4 +23,4 @@ customer_list as (
 select
 *
 from facebook_custom_audience
--- where date_trunc('day',customer_created_at) > '2024-11-01'
+-- where date_trunc('day',customer_created_at) > '2024-12-01'
