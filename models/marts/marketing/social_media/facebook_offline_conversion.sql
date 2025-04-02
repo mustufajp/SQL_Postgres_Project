@@ -25,5 +25,5 @@ facebook_offline_conversion as
 
 select *
 from facebook_offline_conversion
---where date_trunc('day',event_time) > '2025-03-20' and customer_id is not null
+--where date_trunc('day',event_time) > '2025-03-30' and customer_id is not null
 
