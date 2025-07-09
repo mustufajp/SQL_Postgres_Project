@@ -7,6 +7,7 @@ With customer_info as
 sales_info as 
 (
     select 
+    transaction_id as order_id,
     customer_id,
     'Purchase' as event_name,
     'JPY' as currency,
@@ -25,4 +26,5 @@ facebook_offline_conversion as
 
 select *
 from facebook_offline_conversion
+--where date_trunc('day',event_time) between '2025-06-24' and '2025-07-08'  and customer_id is not null
 
