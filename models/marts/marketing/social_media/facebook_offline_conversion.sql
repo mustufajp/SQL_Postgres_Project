@@ -26,5 +26,5 @@ facebook_offline_conversion as
 
 select *
 from facebook_offline_conversion
---where date_trunc('day',event_time) between '2025-06-24' and '2025-07-08'  and customer_id is not null
+--where date_trunc('day',event_time) between '2025-07-30' and '2025-08-04'  and customer_id is not null
 
