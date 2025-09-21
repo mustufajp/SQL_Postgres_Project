@@ -1,30 +1,39 @@
-With customer_info as 
-(
-    select *
-    from {{ ref('facebook_custom_audience') }}
-),
+with
+    customer_info as (
+        select customer_id, email, phone_number, fn, ln, country, zip, dob, gen
+        from {{ ref("facebook_custom_audience") }}
+    ),
 
-sales_info as 
-(
-    select 
-    transaction_id as order_id,
-    customer_id,
-    'Purchase' as event_name,
-    'JPY' as currency,
-    sales_at as event_time,
-    sales_amount as value
+    sales_info as (
+        select
+            customer_id,
+            transaction_id as order_id,
+            'Purchase' as event_name,
+            'JPY' as currency,
+            sales_at as event_time,
+            sales_amount as value
 
-    from {{ ref('customer_analysis_dashboard') }}
-),
+        from {{ ref("customer_analysis_dashboard") }}
+    ),
 
-facebook_offline_conversion as 
-(
-    select *
-    from sales_info
-    left join customer_info using (customer_id)
-)
+    facebook_offline_conversion as (
+        select * from sales_info left join customer_info using (customer_id)
+    )
 
-select *
+select
+    email,
+    phone_number,
+    fn,
+    ln,
+    country,
+    zip,
+    dob,
+    gen,
+    order_id,
+    event_name,
+    currency,
+    event_time,
+    value
 from facebook_offline_conversion
---where date_trunc('day',event_time) between '2025-07-30' and '2025-08-04'  and customer_id is not null
-
+where
+    --date_trunc('day', event_time) between '2025-09-09' and '2025-09-20' and customer_id is not null
