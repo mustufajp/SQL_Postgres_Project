@@ -35,5 +35,5 @@ select
     event_time,
     value
 from facebook_offline_conversion
-where
-    --date_trunc('day', event_time) between '2025-09-09' and '2025-09-20' and customer_id is not null
+--where
+--date_trunc('day', event_time) between '2025-09-09' and '2025-09-20' and customer_id is not null
