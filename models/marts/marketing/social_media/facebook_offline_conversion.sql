@@ -22,7 +22,6 @@ with
             sales_amount as value
 
         from {{ ref("customer_analysis_dashboard") }}
-        where 
     ),
 
     facebook_offline_conversion as (
