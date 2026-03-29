@@ -1,6 +1,14 @@
 with
     customer_info as (
-        select customer_id, email, phone_number, fn, ln, country, zip, dob, gen
+        select customer_id, 
+        email, 
+        phone, 
+        fn, 
+        ln, 
+        country, 
+        zip, 
+        dob, 
+        gen
         from {{ ref("facebook_custom_audience") }}
     ),
 
@@ -14,6 +22,7 @@ with
             sales_amount as value
 
         from {{ ref("customer_analysis_dashboard") }}
+        where 
     ),
 
     facebook_offline_conversion as (
@@ -22,7 +31,7 @@ with
 
 select
     email,
-    phone_number,
+    phone,
     fn,
     ln,
     country,
@@ -35,5 +44,3 @@ select
     event_time,
     value
 from facebook_offline_conversion
---where
---date_trunc('day', event_time) between '2025-09-09' and '2025-09-20' and customer_id is not null

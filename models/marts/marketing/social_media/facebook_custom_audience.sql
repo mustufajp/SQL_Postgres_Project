@@ -7,7 +7,7 @@ customer_list as (
     facebook_custom_audience as (
         select  
          customer_email as email,
-        concat('81', substring(cast(customer_phone_number as varchar), 2)) as phone_number,
+        concat('81', substring(cast(customer_phone_number as varchar), 2)) as phone,
         customer_first_name as fn,
         customer_last_name as ln,
         'jp' as country,
@@ -23,4 +23,3 @@ customer_list as (
 select
 *
 from facebook_custom_audience
---where date_trunc('day',customer_created_at)>= '2025-07-01'
