@@ -43,3 +43,4 @@ select
     event_time,
     value
 from facebook_offline_conversion
+where email is not null
