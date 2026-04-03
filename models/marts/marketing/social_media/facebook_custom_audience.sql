@@ -21,5 +21,13 @@ customer_list as (
     )
 
 select
-*
+        email,
+        phone,
+        fn,
+        ln,
+        country,
+        zip,
+        dob,
+        gen,
+        sales_amount,
 from facebook_custom_audience

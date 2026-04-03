@@ -38,7 +38,7 @@ select
     dob,
     gen,
     order_id,
-    event_name,
+    EXTRACT(EPOCH FROM event_time::timestamptz)::BIGINT as event_time,
     currency,
     event_time,
     value
