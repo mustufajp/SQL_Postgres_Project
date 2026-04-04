@@ -29,5 +29,5 @@ select
         zip,
         dob,
         gen,
-        sales_amount,
+        sales_amount
 from facebook_custom_audience
