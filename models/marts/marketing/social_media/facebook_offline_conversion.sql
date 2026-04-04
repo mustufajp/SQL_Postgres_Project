@@ -40,7 +40,6 @@ select
     order_id,
     EXTRACT(EPOCH FROM event_time::timestamptz)::BIGINT as event_time,
     currency,
-    event_time,
     value
 from facebook_offline_conversion
 where email is not null
