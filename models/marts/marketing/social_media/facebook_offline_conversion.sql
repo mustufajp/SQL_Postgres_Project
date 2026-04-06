@@ -39,6 +39,7 @@ select
     gen,
     order_id,
     EXTRACT(EPOCH FROM event_time::timestamptz)::BIGINT as event_time,
+    event_name,
     currency,
     value
 from facebook_offline_conversion
