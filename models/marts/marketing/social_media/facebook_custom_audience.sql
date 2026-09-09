@@ -15,7 +15,7 @@ customer_list as (
         customer_date_of_birth as dob,
         case when customer_gender= 'male' then 'M' when customer_gender='female' then 'F' else null end as gen,
         customer_created_at,
-        sales_amount,
+        COALESCE(sales_amount, 0) as sales_amount,
         customer_id
         from customer_list
     )
@@ -29,6 +29,7 @@ select
         zip,
         dob,
         gen,
-        sales_amount,
-        customer_id
+        sales_amount
 from facebook_custom_audience
+--where customer_created_at >= '2026-08-01' 
+
