@@ -4,7 +4,7 @@ customer_list as (
     from {{ ref('customer_analysis_dashboard_aggregated_to_customer') }}
     order by customer_created_at desc
 ),
-    facebook_custom_audience as (
+    renamed as (
         select  
          customer_email as email,
         concat('81', substring(cast(customer_phone_number as varchar), 2)) as phone,
@@ -19,17 +19,17 @@ customer_list as (
         customer_id
         from customer_list
     )
-
-select
-        email,
-        phone,
-        fn,
-        ln,
-        country,
-        zip,
-        dob,
-        gen,
-        sales_amount
-from facebook_custom_audience
---where customer_created_at >= '2026-08-01' 
+    select
+            email,
+            phone,
+            fn,
+            ln,
+            country,
+            zip,
+            dob,
+            gen,
+            sales_amount,
+            customer_id
+    from renamed
+    --where customer_created_at >= '2026-09-01' 
 
