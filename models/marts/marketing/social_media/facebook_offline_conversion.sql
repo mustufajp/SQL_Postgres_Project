@@ -26,8 +26,8 @@ with
 
     facebook_offline_conversion as (
         select * from sales_info left join customer_info using (customer_id)
-    )
-
+    ),
+select_data as (
 select
     email,
     phone,
@@ -38,9 +38,15 @@ select
     dob,
     gen,
     order_id,
-    EXTRACT(EPOCH FROM event_time::timestamptz)::BIGINT as event_time,
+    event_time,
+    --EXTRACT(EPOCH FROM event_time::timestamptz)::BIGINT as event_time,
     event_name,
     currency,
     value
 from facebook_offline_conversion
-where email is not null
+where email is not null 
+)
+
+select
+*
+from select_data 
