@@ -20,6 +20,7 @@ with
             'JPY' as currency,
             sales_at as event_time,
             sales_amount as value
+
         from {{ ref("customer_analysis_dashboard") }}
     ),
 
@@ -37,7 +38,7 @@ select
     dob,
     gen,
     order_id,
-    EXTRACT(EPOCH FROM event_time::timestamptz)::BIGINT as event_time,
+    event_time,
     event_name,
     currency,
     value

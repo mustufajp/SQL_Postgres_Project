@@ -7,7 +7,7 @@ product as (
 ),
 sales as (
     select 
-     {{ dbt_utils.star(from=ref('customer_analysis_dashboard'), except=[
+     {{ dbt_utils.star(from=ref('int_added_membership_status_to_transaction'), except=[
         "sales_amount",
         "points_used",
         "total_discount",
@@ -16,7 +16,7 @@ sales as (
         "is_gift"
         ]) }}
 
-    from {{ ref('customer_analysis_dashboard') }}
+    from {{ ref('int_added_membership_status_to_transaction') }}
     ),
 
 int_sales_aggregated_to_product as (

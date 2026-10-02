@@ -6,19 +6,6 @@ sales as
     from {{ ref('int_added_first_purchase_date') }}
 ),
 
-employee_info as (
-    select
-       {{ dbt_utils.star(from=ref('int_add_info_to_employee'), except=[
-        "employee_store_id",
-        "employee_phone_number",
-        "employee_email",
-        "employee_gender",
-        "employee_date_of_birth",
-        "employee_profile_updated_at"
-        ]) }}
-    from {{ ref('int_add_info_to_employee') }}
-),
-
 store_info as (
     select 
          {{ dbt_utils.star(from=ref('int_address_joined_to_store'), except=[
@@ -45,7 +32,6 @@ store_info as (
  int_joined_sales_emolyee_customer_store_info as (
     select *
     from sales
-    left join employee_info using (employee_id)
     left join store_info using (store_id)
     )
 
