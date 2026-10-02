@@ -38,8 +38,8 @@ select
     dob,
     gen,
     order_id,
-    event_time,
-    --EXTRACT(EPOCH FROM event_time::timestamptz)::BIGINT as event_time,
+    event_time as event_timestamp,
+    EXTRACT(EPOCH FROM event_time::timestamptz)::BIGINT as event_time,
     event_name,
     currency,
     value
@@ -49,4 +49,4 @@ where email is not null
 
 select
 *
-from select_data 
+from select_data
