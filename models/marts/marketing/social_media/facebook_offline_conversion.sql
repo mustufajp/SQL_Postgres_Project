@@ -20,8 +20,7 @@ with
             'JPY' as currency,
             sales_at as event_time,
             sales_amount as value
-
-        from {{ ref("customer_analysis_dashboard") }}
+        from {{ ref("int_added_membership_status_to_transaction") }}
     ),
 
     facebook_offline_conversion as (
