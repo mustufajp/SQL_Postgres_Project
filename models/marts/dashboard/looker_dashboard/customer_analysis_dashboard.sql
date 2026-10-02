@@ -19,7 +19,7 @@ customer_analysis_dashboard as
     when customer_id is null then 'Non-User'
     end as member_status_en
 
-    from {{ ref('int_churn_analysis_added_to_sales') }}
+    from {{ ref('int_joined_sales_emolyee_customer_store_info') }}
 )
 
 select 
