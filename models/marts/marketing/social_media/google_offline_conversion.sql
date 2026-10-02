@@ -31,12 +31,6 @@ select_data as (
 select
     email as email_address,
     phone,
-    fn as first_name,
-    ln as last_name,
-    country,
-    zip,
-    dob,
-    gen as gender,
     order_id,
     event_time as date_created,
     event_name as conversion_name,
