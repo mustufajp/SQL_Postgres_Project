@@ -29,19 +29,21 @@ with
     ),
 select_data as (
 select
-    email,
+    email as email_address,
     phone,
-    fn,
-    ln,
+    fn as first_name,
+    ln as last_name,
     country,
     zip,
     dob,
-    gen,
+    gen as gender,
     order_id,
-    event_time,
-    event_name,
+    event_time as date_created,
+    event_name as conversion_name,
     currency,
-    value
+    value as conversion_value,
+    'GRANTED' AS ad_user_data_consent,
+    'GRANTED' AS ad_personalization_consent
 from facebook_offline_conversion
 where email is not null 
 )
