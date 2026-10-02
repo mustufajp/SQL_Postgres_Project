@@ -1,7 +1,7 @@
 with
 customer_list as (
     select *
-    from {{ ref('customer_analysis_dashboard_aggregated_to_customer') }}
+    from {{ ref('int_sales_aggregated_to_customer') }}
     order by customer_created_at desc
 ),
     renamed as (
