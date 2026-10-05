@@ -2,7 +2,7 @@ with
     customer_info as (
         select customer_id, 
         email, 
-        phone, 
+        CONCAT('+', CAST(phone AS VARCHAR))as phone, 
         fn, 
         ln, 
         country, 
