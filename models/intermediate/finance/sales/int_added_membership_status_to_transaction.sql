@@ -3,7 +3,7 @@ sales as
 (
     select 
     *
-    from {{ ref('int_added_first_purchase_date') }}
+    from {{ ref('int_joined_sales_emolyee_customer_store_info') }}
 ),
 
 int_added_membership_status_to_transaction as (
