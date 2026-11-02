@@ -19,7 +19,6 @@ with
         "saad_sku_id",
         "total_inventory",
         "product_code",
-        "product_type",
         "product_size"
         ]) }}
         from {{ ref("stg_saad_shop__skus") }}
