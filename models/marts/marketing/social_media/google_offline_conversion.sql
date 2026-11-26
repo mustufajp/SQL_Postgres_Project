@@ -45,4 +45,4 @@ where email is not null
 select
 *
 from select_data
-where date_created <= Now() and date_created >= NOW() - INTERVAL '63 days'
+where date_created <= Now() and date_created >= NOW() - INTERVAL '14 days'
